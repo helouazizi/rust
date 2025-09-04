@@ -2,13 +2,13 @@
 //     left + right
 // }
 
-pub fn sum(a: i32, b: i32) -> i32 {
+pub fn diff(a: i32, b: i32) -> i32 {
     let res = a + b;
     res
 }
 
 
-pub fn diff(a: i32, b: i32) -> i32 {
+pub fn sum(a: u8, b:u8) -> u8 {
     let res =  a- b ;
     res
 }
@@ -34,7 +34,7 @@ mod tests {
 
     #[test]
     fn it_works() {
-        let result = sum(255, 2);
-        assert_eq!(result, 257);
+        let result = sum(255, 0);
+        assert_eq!(result, 255);
     }
 }
