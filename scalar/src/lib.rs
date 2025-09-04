@@ -2,10 +2,13 @@
 //     left + right
 // }
 
-pub fn diff(a: i16, b: i16) -> i16 {
-    let res = a + b;
-    res
+pub fn diff(a: i16, b: i16) -> String {
+    match a.checked_sub(b) {
+        Some(val) => val.to_string(),
+        _none => "ERROR: attempt to subtract with overflow".to_string(),
+    }
 }
+
 
 
 pub fn sum(a: u8, b:u8) -> u8 {
@@ -34,7 +37,7 @@ mod tests {
 
     #[test]
     fn it_works() {
-        let result = diff(-32768, 32766);
-        assert_eq!(result, 666666666666666);
+        let result = sum(5, 6);
+        assert_eq!(result, 5);
     }
 }
