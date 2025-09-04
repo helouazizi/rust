@@ -2,12 +2,13 @@
 //     left + right
 // }
 
-pub fn diff(a: i16, b: i16) -> String {
+pub fn diff(a: i16, b: i16) -> Result<i16, &'static str> {
     match a.checked_sub(b) {
-        Some(val) => val.to_string(),
-        _none => "ERROR: attempt to subtract with overflow".to_string(),
+        Some(val) => Ok(val),
+        None => Err("ERROR: attempt to subtract with overflow"),
     }
 }
+
 
 
 
