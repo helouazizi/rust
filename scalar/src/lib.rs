@@ -12,16 +12,16 @@ pub fn diff(a: i32, b: i32) -> i32 {
 5
 }
 
-pub fn pro(a: i32, b: i32) -> i32 {
+pub fn quo(a: f32, b: f32) -> f32 {
+5.2
+}
+
+pub fn pro(a: i32, b: i32) -> i32{
 5
 }
 
-pub fn quo(a: i32, b: i32) -> i32{
-5
-}
-
-pub fn rem(a: i32, b: i32) -> i32{
-5
+pub fn rem(a: f32, b: f32) -> f32{
+5.2
 }
 
 #[cfg(test)]
