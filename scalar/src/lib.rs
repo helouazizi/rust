@@ -2,7 +2,7 @@
 //     left + right
 // }
 
-pub fn diff(a: i32, b: i32) -> i32 {
+pub fn diff(a: i16, b: i16) -> i16 {
     let res = a + b;
     res
 }
