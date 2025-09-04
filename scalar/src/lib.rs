@@ -7,6 +7,23 @@ pub fn sum(a: i32, b: i32) -> i32 {
     res
 }
 
+
+pub fn diff(a: i32, b: i32) -> i32 {
+5
+}
+
+pub fn pro(a: i32, b: i32) -> i32 {
+5
+}
+
+pub fn quo(a: i32, b: i32) -> i32{
+5
+}
+
+pub fn rem(a: i32, b: i32) -> i32{
+5
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
