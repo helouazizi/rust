@@ -1,1 +1,18 @@
-/target
+# Rust build folders
+/target/
+**/target/
+
+# Cargo dependency files
+**/Cargo.lock
+
+# VS Code settings
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.swp
+*.log
