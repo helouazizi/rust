@@ -18,7 +18,7 @@ let res = a/b ;
 res 
 }
 
-pub fn pro(a: i32, b: i32) -> i32{
+pub fn pro(a: i8, b: i8) -> i8{
 let res =  a*b ;
 res
 }
@@ -34,7 +34,7 @@ mod tests {
 
     #[test]
     fn it_works() {
-        let result = sum(255, 0);
-        assert_eq!(result, 255);
+        let result = diff(-32768, 32766);
+        assert_eq!(result, 666666666666666);
     }
 }
