@@ -3,16 +3,16 @@ pub fn add(left: usize, right: usize) -> usize {
 }
 
 
-pub fn fahrenheit_to_celsius(f: f64) -> f64 {
-    let c =(f-32.0) * (5.0 /9.0);
-    (c*100.0).round() / 100.0
+pub fn celsius_to_fahrenheit(c: f32) -> f32 {
+   let res =  (c * 9.0 / 5.0) + 32.0;   
+     // round to 2 decimals
+    (res * 100.0).round() / 100.0               
 }
 
-pub fn celsius_to_fahrenheit(c: f64) -> f64 {
-    let f =   (c+32.0)*(9.0/5.0) ;
-    (f*100.0).round() / 100.0
-  
+pub fn fahrenheit_to_celsius(f: f32) -> f32 {
+    ((f - 32.0) * 5.0 / 9.0 * 100.0).round() / 100.0
 }
+
 
 #[cfg(test)]
 mod tests {
