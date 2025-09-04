@@ -1,9 +1,11 @@
+
+#[derive(Debug,PartialEq)]
 pub fn add(left: usize, right: usize) -> usize {
     left + right
 }
 
 
-pub struct Student(u32,String,String);
+pub struct Student(pub u32,pub String, pub String);
 
 
 pub fn id(student: &Student) -> u32 {
