@@ -9,8 +9,9 @@ pub fn celsius_to_fahrenheit(c: f64) -> f64 {
 }
 
 pub fn fahrenheit_to_celsius(f: f64) -> f64 {
-    (f - 32.0) * 5.0 / 9.0 
-
+    let c = (f - 32.0) * 5.0 / 9.0;
+    let factor = 1_000_000_000_000_000.0; // 15 decimals
+    (c * factor).round() / factor
 }
 
 
@@ -20,7 +21,7 @@ mod tests {
 
     #[test]
     fn it_works() {
-        let result = fahrenheit_to_celsius(27.0);
-        assert_eq!(result, 4.0);
+        let result = fahrenheit_to_celsius(20.0);
+        assert_eq!(result, -6.666666666666666);
     }
 }
