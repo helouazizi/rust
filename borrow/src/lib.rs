@@ -3,7 +3,7 @@ pub fn add(left: usize, right: usize) -> usize {
 }
 
 pub fn str_len(s:&str ) -> usize {
-    s.len()
+    s.chars().count()
 }
 
 #[cfg(test)]
