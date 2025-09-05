@@ -31,7 +31,7 @@ pub fn vec_function(b: Vec<i32>) -> (Vec<i32>, Vec<f64>) {
 
     let exps: Vec<f64> = b
         .iter()
-        .map(|num| (*num as f64).exp())
+        .map(|num| (*num as f64).ln().abs())
         .collect();
     (b, exps)
 }
