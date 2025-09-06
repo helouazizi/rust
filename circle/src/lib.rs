@@ -2,7 +2,22 @@ pub fn add(left: usize, right: usize) -> usize {
     left + right
 }
 
+#[derive(Debug, Clone, Copy)]
+pub struct Circle {
+	pub center //..
+	pub radius //..
+}
 
+impl Circle {
+    // ...
+}
+
+#[derive(Debug, Clone, Copy)]
+pub struct Point(/* */);
+
+impl Point {
+    // ...
+}
 
 
 #[cfg(test)]
