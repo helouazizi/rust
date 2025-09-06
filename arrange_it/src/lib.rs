@@ -11,7 +11,7 @@ pub fn arrange_phrase(phrase: &str) -> String {
     res
 }
 
-fn find_digit(str : &str)  -> i32 {
+fn find_digit(s : &str)  -> i32 {
     let mut num = 0;
     for c in s.chars() {
         if let Some(d) = c.to_digit(10) {
