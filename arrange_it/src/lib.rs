@@ -4,11 +4,14 @@ pub fn add(left: usize, right: usize) -> usize {
 
 
 pub fn arrange_phrase(phrase: &str) -> String {
-    let mut  buf : Vec<&str> = phrase.split(' ').collect();
+      let mut buf: Vec<&str> = phrase.split_whitespace().collect();
     buf.sort_by_key(|c| find_digit(c));
 
-    let res : String = buf.join(" ");
-    res
+    let cleaned: Vec<String> = buf.iter()
+        .map(|w| w.chars().filter(|c| !c.is_ascii_digit()).collect())
+        .collect();
+
+    cleaned.join(" ")
 }
 
 fn find_digit(s : &str)  -> i32 {
