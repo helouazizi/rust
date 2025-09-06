@@ -12,8 +12,13 @@ pub fn arrange_phrase(phrase: &str) -> String {
 }
 
 fn find_digit(str : &str)  -> i32 {
-    let digit : String =  str.chars().filter(|c| c.is_ascii_digit()).collect();
-    digit.parse::<i32>().unwrap_or(0)
+    let mut num = 0;
+    for c in s.chars() {
+        if let Some(d) = c.to_digit(10) {
+            num = num * 10 + d as i32;
+        }
+    }
+    num
 }
 
 
