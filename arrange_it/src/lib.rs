@@ -6,7 +6,7 @@ pub fn add(left: usize, right: usize) -> usize {
 pub fn arrange_phrase(phrase: &str) -> String {
     let buf : Vec<&str> = phrase.split(' ').collect();
     println!("{:?}", buf);
-    "".to_string();
+    "".to_string()
 
 }
 
