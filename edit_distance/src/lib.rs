@@ -22,10 +22,33 @@ pub fn edit_distance(source: &str, target: &str) -> usize {
     let t1 : Vec<char> = target.chars().collect();
     // println!("{:?}  {:?}" , s1 , t1);
 
-    let table = vec![vec![0;t+1] ;s+1];
-    println!("{:?}  " , table);
+    let mut  table = vec![vec![0;t+1] ;s+1];
+    for i in 0..=s {
+        table[i][0] = i;
+    }
+     for j in 0..=t {
+        table[0][j] = j;
+    }
 
-    100
+    // lets fill the table herae 
+    for i in 1..=s {
+        for j in 1..=t {
+            // conpare chrcter 
+            if s1[i-1] == t1[j-1]{
+                table[i][j] = table[i-1][j-1];
+            }else {
+                table[i][j] = 1 + std::cmp::min(
+                    table[i-1][j-1],
+                    std::cmp::min(table[i-1][j],table[i][j-1])
+                )
+            }
+        }
+    }
+
+
+   
+
+    table[s][t]
 }
 
 #[cfg(test)]
