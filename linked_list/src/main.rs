@@ -19,7 +19,7 @@ impl ListNode {
     }
 
     fn push_front(&self, item: i32) {
-        for val in self.next. {}
+    
 
     }
 }
