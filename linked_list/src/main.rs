@@ -18,8 +18,9 @@ impl ListNode {
         ListNode { val: 0, next: None }
     }
 
-    fn push_front(&self, item: i32) {
-        
+    fn push_front(&self, item: i32) {}
     
-    }
 }
+
+
+
