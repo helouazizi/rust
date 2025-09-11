@@ -6,15 +6,15 @@ fn main() {
         password: "qwqwsa1dty_".to_owned(),
     };
 
-    println!("{:?}", form_output);
-    println!("{:?}", form_output.validate());
+    // println!("{:?}", form_output);
+    // println!("{:?}", form_output.validate());
 
-    form_output.name = "".to_owned();
-    println!("{:?}", form_output.validate());
+    // form_output.name = "".to_owned();
+    // println!("{:?}", form_output.validate());
 
-    form_output.name = "as".to_owned();
-    form_output.password = "dty_1".to_owned();
-    println!("{:?}", form_output.validate());
+    // form_output.name = "as".to_owned();
+    // form_output.password = "dty_1".to_owned();
+    // println!("{:?}", form_output.validate());
 
     form_output.password = "asdasASd(_".to_owned();
     println!("{:?}", form_output.validate());

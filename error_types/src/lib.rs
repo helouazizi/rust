@@ -37,9 +37,9 @@ impl Form {
 
         let isdigit =  self.password.chars().any(|c| c.is_ascii_digit());
         let isletter =  self.password.chars().any(|c| c.is_ascii_alphabetic());
-        let ispenc =  self.password.chars().any(|c| c.is_ascii_punctuation() || (c as u8 >= 0x24 && c as u8 <= 0x2F)  /*|| c.is_ascii_symbol() */);
+        let ispenc =  self.password.chars().any(|c| (c as u8 >= 0x24 && c as u8 <= 0x2F) || c.is_ascii_punctuation()  );
 
-        if !isdigit && !isletter && !ispenc {
+        if !(isdigit && isletter && ispenc ){
              return  Err(FormError{err:"Password should be a combination of ASCII numbers, letters and symbols".to_string() , form_values: ("Password".to_string(),self.password.to_string()) , date :date} ) ;
         }
 
