@@ -2,7 +2,7 @@
 
 #[derive(Debug, PartialEq)]
 pub struct CipherError {
-   expected: String
+ pub   expected: String
 }
 
 pub fn cipher(original: &str, ciphered: &str) -> Result<(), CipherError> {
