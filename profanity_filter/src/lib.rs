@@ -5,6 +5,6 @@ pub fn check_ms(message: &str) -> Result<&str, &str> {
      Err("ERROR: illegal")
     
   }else{
-       Ok("hello there")
+       Ok(message)
   }
 }
