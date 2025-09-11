@@ -1,8 +1,14 @@
+// profanity_filter01/src/main.rs
 
 use profanity_filter::*;
 
 fn main() {
-    ["hello there", "", "you are stupid", "stupid"]
+    [
+        "get out of the car",
+        "no!",
+        "get the werewolf",
+        "wait the what...",
+    ]
         .into_iter()
         .for_each(|m| println!("{:?}", profanity_filter::check_ms(m)));
 }
