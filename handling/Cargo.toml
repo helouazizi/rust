@@ -1,7 +1,8 @@
+
 [package]
 name = "handling"
 version = "0.1.0"
-edition = "2024"
+edition = "2021"
 
 [dependencies]
 tempfile = "3.22.0"
