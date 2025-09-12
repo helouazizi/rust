@@ -1,14 +1,17 @@
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
+use chrono::{NaiveDate,Datelike, Weekday};
+
+pub fn middle_day(year: u32) -> Option<Weekday> {
+    let year_i32 = year as i32;
+
+    if is_leap_year(year_i32) {
+        return None;
+    }
+
+    let middle_day = (365 + 1) / 2;
+
+    NaiveDate::from_yo_opt(year_i32, middle_day).map(|date| date.weekday())
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
+fn is_leap_year(year: i32) -> bool {
+    (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)
 }
