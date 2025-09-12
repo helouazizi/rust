@@ -38,8 +38,8 @@ fn main() {
         let todos = TodoList::get_todo(name);
         match todos {
             Ok(list) => println!("{:?}", list),
-            Err(e) => {
-                println!("{}: {:?}", e.to_string(), e.child_err.source());
+             Err(e) => {
+                println!("Failed to parse todo file: {:?}", e.child_err.source());
             }
         }
     }
