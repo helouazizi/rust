@@ -78,3 +78,20 @@ pub fn edit_distance(source: &str, target: &str) -> usize {
     table[s][t]
 }
 
+
+
+fn is_snake_case(s: &str) -> bool {
+    !s.is_empty()
+        && s.chars().all(|c| c.is_ascii_lowercase() || c == '_' || c.is_ascii_digit())
+        && !s.starts_with('_')
+        && !s.ends_with('_')
+        && !s.contains("__")
+}
+
+
+
+fn is_camel_case(s: &str) -> bool {
+    s.chars().next().map(|c| c.is_ascii_lowercase()).unwrap_or(false)
+        && !s.contains('_')
+        && s.chars().any(|c| c.is_uppercase())
+}
