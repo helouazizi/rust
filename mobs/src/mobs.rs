@@ -9,7 +9,7 @@ pub mod member;
 #[path = "mobs/mob.rs"]
 pub mod mob;
 
-// Re-export for external access
+// Re-export for external usage
 pub use boss::Boss;
 pub use member::{Member, Role};
 pub use mob::Mob;
