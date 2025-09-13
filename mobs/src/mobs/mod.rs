@@ -2,8 +2,8 @@ pub mod boss;
 pub mod member;
 
 use std::collections::{HashMap, HashSet};
-use crate::mobs::boss::Boss;
-use crate::mobs::member::{Member, Role};
+pub use boss::*;
+pub use member::*;
 
 #[derive(Debug, PartialEq)]
 pub struct Mob {
