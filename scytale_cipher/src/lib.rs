@@ -1,14 +1,60 @@
-pub fn add(left: u64, right: u64) -> u64 {
-    left + right
+pub fn scytale_cipher(message: &str, i: usize) -> String {
+    if i == 0 {
+        return String::new();
+    }
+    let mut str = String::from(message);
+      let remainder = message.len() % i;
+       if remainder != 0 {
+        str += &" ".repeat(i - remainder);
+    }
+
+    let chars: Vec<char> = str.chars().collect();
+    let len = chars.len();
+
+
+ 
+    let mut grid: Vec<String> = vec![String::new(); i];
+
+    for (idx, ch) in chars.iter().enumerate() {
+        let row = idx % i;
+        grid[row].push(*ch);
+    }
+
+    println!("{:?}", grid);
+
+    grid.concat().trim().to_string()
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
 
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
+
+#[test]
+fn test_scytale_code() {
+    assert_eq!(scytale_cipher("scytale Code", 6), "sec yCtoadle");
+    assert_eq!(scytale_cipher("scytale Code", 8), "sCcoydtea l e");
+}
+
+#[test]
+fn test_nothing() {
+    assert_eq!(scytale_cipher("", 4), "");
+    assert_eq!(scytale_cipher("", 0), "");
+}
+
+#[test]
+fn test_same_length() {
+    assert_eq!(scytale_cipher("qwerty qwerty", 13), "qwerty qwerty");
+}
+
+#[test]
+fn test_thicker_cylinder() {
+    assert_eq!(scytale_cipher("attack morning", 6), "a ntmgto ar cn ki");
+}
+
+#[test]
+fn test_overflowing() {
+    assert_eq!(scytale_cipher("abc", 6), "abc");
+}
+
+#[test]
+fn test_others() {
+    assert_eq!(scytale_cipher("a b c", 2), "abc");
 }
