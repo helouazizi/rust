@@ -2,4 +2,4 @@
 // src/lib.rs
 #[path = "mobs/mod.rs"]
 pub mod mobs; 
-use mobs::*;
+pub use mobs::*;
