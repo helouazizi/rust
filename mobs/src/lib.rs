@@ -1,5 +1,11 @@
 // src/lib.rs
+// src/lib.rs
+
 pub mod mobs;
+
+// Re-export types for external access
+pub use mobs::{Mob, Boss, Member, Role};
+
 
 
 #[cfg(test)]
