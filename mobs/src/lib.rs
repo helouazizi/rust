@@ -8,6 +8,7 @@ pub use mobs::{Mob, Boss, Member, Role};
 
 
 
+
 #[cfg(test)]
 mod tests {
     use super::mobs::{Mob, Boss};
