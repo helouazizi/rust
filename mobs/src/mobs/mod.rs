@@ -1,9 +1,10 @@
 pub mod boss;
 pub mod member;
-
-use std::collections::{HashMap, HashSet};
 pub use boss::*;
 pub use member::*;
+
+use std::collections::{HashMap, HashSet};
+
 
 #[derive(Debug, PartialEq)]
 pub struct Mob {
