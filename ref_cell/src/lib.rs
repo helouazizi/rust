@@ -1,14 +1,141 @@
-pub fn add(left: u64, right: u64) -> u64 {
-    left + right
+use std::cell::RefCell;
+use std::rc::Rc;
+
+pub struct Tracker {
+    pub messages: RefCell<Vec<String>>,
+    value: RefCell<usize>,
+    max: usize,
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
+impl Tracker {
+    pub fn new(max: usize) -> Self {
+        Self {
+            messages: RefCell::new(vec![]),
+            value: RefCell::new(0),
+            max,
+        }
     }
+
+    pub fn set_value(&self, value: &Rc<i32>) {
+        let count = Rc::strong_count(value);
+
+        if count > self.max {
+            self.messages
+                .borrow_mut()
+                .push("Error: You can't go over your quota!".to_string());
+        } else {
+            *self.value.borrow_mut() = count;
+
+            let percent = (count as f64 / self.max as f64) * 100.0;
+            let rounded = percent.round() as usize;
+
+            if rounded > 100 {
+                self.messages.borrow_mut().push(
+                    "Warning: You have used up over 100% of your quota!".to_string(),
+                );
+            } else if rounded > 70 {
+                self.messages.borrow_mut().push(format!(
+                    "Warning: You have used up over {}% of your quota!",
+                    rounded
+                ));
+            }
+            
+        }
+    }
+
+    pub fn peek(&self, reference: &Rc<i32>) {
+        let count = Rc::strong_count(reference);
+        let percent = (count as f64 / self.max as f64) * 100.0;
+        let rounded = percent.floor() as usize;
+
+        self.messages.borrow_mut().push(format!(
+            "Info: This value would use {}% of your quota",
+            rounded
+        ));
+    }
+}
+
+
+#[test]
+fn test_one() {
+    let expected_messages = [
+        "Info: This value would use 40% of your quota",
+        "Warning: You have used up over 80% of your quota!",
+        "Warning: You have used up over 100% of your quota!",
+        "Error: You can't go over your quota!",
+    ];
+
+    let value = Rc::new(42);
+
+    let track = Tracker::new(5);
+    let _v = Rc::clone(&value);
+    track.peek(&value); // 40%
+    let _v = Rc::clone(&value);
+    let _v = Rc::clone(&value);
+    track.set_value(&value); // 80%
+    let _v = Rc::clone(&value);
+    track.set_value(&value); // 100%
+    let _v = Rc::clone(&value);
+    track.set_value(&value); // >100%
+
+    assert_eq!(track.messages.borrow().as_slice(), expected_messages);
+}
+
+#[test]
+fn test_two() {
+    let value = Rc::new(100);
+
+    let track = Tracker::new(12);
+    let _v = Rc::clone(&value);
+    let _v = Rc::clone(&value);
+    let _v = Rc::clone(&value);
+    let _v = Rc::clone(&value);
+    let _v = Rc::clone(&value);
+    let _v = Rc::clone(&value);
+    let _v = Rc::clone(&value);
+    let _v = Rc::clone(&value);
+
+    track.set_value(&value);
+
+    let _v = Rc::clone(&value);
+
+    track.set_value(&value);
+    assert_eq!(
+        track.messages.borrow().last().unwrap(),
+        "Warning: You have used up over 83% of your quota!"
+    );
+
+    track.peek(&value);
+    assert_eq!(
+        track.messages.borrow().last().unwrap(),
+        "Info: This value would use 83% of your quota"
+    );
+
+    let _v = Rc::clone(&value);
+    track.peek(&value);
+    assert_eq!(
+        track.messages.borrow().last().unwrap(),
+        "Info: This value would use 91% of your quota"
+    );
+
+    let _v = Rc::clone(&value);
+    track.set_value(&value);
+    assert_eq!(
+        track.messages.borrow().last().unwrap(),
+        "Warning: You have used up over 100% of your quota!"
+    );
+
+    let _v = Rc::clone(&value);
+
+    track.peek(&value);
+    assert_eq!(
+        track.messages.borrow().last().unwrap(),
+        "Info: This value would use 108% of your quota"
+    );
+
+    track.set_value(&value);
+    assert_eq!(
+        track.messages.borrow().last().unwrap(),
+        "Error: You can't go over your quota!"
+    );
 }
