@@ -10,7 +10,7 @@ impl From<&str> for Role {
         match s {
             "CEO" => Role::CEO,
             "Manager" => Role::Manager,
-            _ => Role::Worker, // anything else defaults to Worker
+            _ => Role::Worker, 
         }
     }
 }
