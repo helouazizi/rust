@@ -3,44 +3,80 @@ use std::cell::{Cell, RefCell};
 #[derive(Debug)]
 pub struct ThreadPool {
     pub drops: Cell<usize>,
-    pub states: RefCell<Vec<bool>>
+    pub states: RefCell<Vec<bool>>,
 }
 
 impl ThreadPool {
     pub fn new() -> Self {
-        todo!()
+        ThreadPool {
+            drops: Cell::new(0),
+            states: RefCell::new(vec![]),
+        }
     }
 
-    pub fn new_thread(&self, c: String) -> (usize, Thread) {
-        todo!()
+    pub fn new_thread(&self, cmd: String) -> (usize, Thread) {
+        let mut states = self.states.borrow_mut();
+        let pid = states.len();
+        states.push(false); // not dropped
+
+        let thread = Thread {
+            pid,
+            cmd,
+            parent: self,
+        };
+
+        (pid, thread)
     }
 
     pub fn thread_len(&self) -> usize {
-        todo!()
+        self.states.borrow().len()
     }
 
     pub fn is_dropped(&self, id: usize) -> bool {
-        todo!()
+        *self.states.borrow().get(id).unwrap_or(&true)
     }
 
     pub fn drop_thread(&self, id: usize) {
-        todo!()
+        let mut states = self.states.borrow_mut();
+        if let Some(state) = states.get_mut(id) {
+            if *state {
+                panic!("{} is already dropped", id);
+            } else {
+                *state = true;
+                self.drops.set(self.drops.get() + 1);
+            }
+        } else {
+            panic!("Invalid thread id: {}", id);
+        }
     }
 }
 
 #[derive(Debug)]
-pub struct Thread {
-    // expected public fields
+pub struct Thread<'a> {
+    pub pid: usize,
+    pub cmd: String,
+    pub parent: &'a ThreadPool,
 }
 
 impl<'a> Thread<'a> {
-    pub fn new(p: usize, c: String, t: &'a ThreadPool) -> Self {
-        todo!()
+    pub fn new(pid: usize, cmd: String, t: &'a ThreadPool) -> Self {
+        Thread {
+            pid,
+            cmd,
+            parent: t,
+        }
     }
 
     pub fn skill(self) {
-        todo!()
+        drop(self);
     }
 }
 
-impl Drop for Thread<'_> {}
+impl<'a> Drop for Thread<'a> {
+    fn drop(&mut self) {
+        self.parent.drop_thread(self.pid);
+    }
+}
+
+
+
