@@ -1,14 +1,46 @@
-pub fn add(left: u64, right: u64) -> u64 {
-    left + right
+use std::cell::{Cell, RefCell};
+
+#[derive(Debug)]
+pub struct ThreadPool {
+    pub drops: Cell<usize>,
+    pub states: RefCell<Vec<bool>>
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+impl ThreadPool {
+    pub fn new() -> Self {
+        todo!()
+    }
 
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
+    pub fn new_thread(&self, c: String) -> (usize, Thread) {
+        todo!()
+    }
+
+    pub fn thread_len(&self) -> usize {
+        todo!()
+    }
+
+    pub fn is_dropped(&self, id: usize) -> bool {
+        todo!()
+    }
+
+    pub fn drop_thread(&self, id: usize) {
+        todo!()
     }
 }
+
+#[derive(Debug)]
+pub struct Thread {
+    // expected public fields
+}
+
+impl<'a> Thread<'a> {
+    pub fn new(p: usize, c: String, t: &'a ThreadPool) -> Self {
+        todo!()
+    }
+
+    pub fn skill(self) {
+        todo!()
+    }
+}
+
+impl Drop for Thread<'_> {}
