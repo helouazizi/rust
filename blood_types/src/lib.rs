@@ -46,5 +46,5 @@ impl BloodType {
 	pub fn donors(&self) -> Vec<Self> {
 	}
 
-	pub fn recipients(&self) -> Vec<BloodType> {
+	pub fn recipients(&self) -> Vec<BloodType> {}
 }
