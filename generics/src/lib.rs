@@ -1,2 +1,3 @@
-pub fn identity(v: _) -> _ {
+pub fn identity<C>(v:C ) -> C {
+    v
 }
