@@ -43,17 +43,18 @@ impl<T: Scalar> Vector<T> {
         Self(data)
     }
 
-    pub fn dot(&self, other: &Self) -> Option<T> {
-        if self.0.len() != other.0.len() {
-            return None;
-        }
-
-        let mut res = T::zero();
-        for i in 0..self.0.len() {
-            res = res + self.0[i] * other.0[i];
-        }
-        Some(res)
+  pub fn dot(&self, other: &Self) -> T {
+    if self.0.len() != other.0.len() {
+        panic!("Vector size mismatch in dot product");
     }
+
+    let mut res = T::zero();
+    for i in 0..self.0.len() {
+        res = res + self.0[i] * other.0[i];
+    }
+    res
+}
+
 }
 
 impl<T: Scalar> Add for Vector<T> {
