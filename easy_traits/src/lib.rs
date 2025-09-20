@@ -17,7 +17,7 @@ impl AppendStr for StringValue {
         Self { value: self.value.clone() }
      }
       fn append_number(&mut self, nb_to_append: f64) -> Self {
-         let string = nb_to_append.to_string();
+        let string = nb_to_append.to_string();
         self.value.push_str(&string);
         Self { value: self.value.clone() }
       }

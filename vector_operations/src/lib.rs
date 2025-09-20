@@ -1,14 +1,31 @@
 #[derive(Debug, Copy, Clone, PartialEq)]
 pub struct ThreeDVector<T> {
-	pub i: T,
-	pub j: T,
-	pub k: T,
+    pub i: T,
+    pub j: T,
+    pub k: T,
 }
 
 use std::ops::{Add, Sub};
 
-impl Add for ThreeDVector<T> {
+impl<T: Add<Output = T>> Add for ThreeDVector<T> {
+    type Output = Self;
+    fn add(self, rhs: Self) -> Self::Output {
+        ThreeDVector {
+            i: self.i + rhs.i,
+            j: self.j + rhs.j,
+            k: self.k + rhs.k,
+        }
+    }
 }
 
-impl Sub for ThreeDVector<T> {
+impl <T>Sub for ThreeDVector<T> where  T: Sub< Output = T>, {
+	type Output = Self;
+	fn sub(self, rhs: Self) -> Self::Output {
+		Self {
+			i : self.i - rhs.i ,
+			j: self.j - rhs.j ,
+			k : self.k - rhs.k
+		}
+		
+	}
 }
