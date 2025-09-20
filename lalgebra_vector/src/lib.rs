@@ -1,14 +1,14 @@
-pub fn add(left: u64, right: u64) -> u64 {
-    left + right
+pub struct Vector<T: Scalar>(pub Vec<T>);
+
+use std::ops::Add;
+
+impl Add for Vector<T> {
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+impl Vector<T> {
+	pub fn new() -> Self {
+	}
 
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
+	pub fn dot(&self, other: &Self) -> Option<T> {
+	}
 }
