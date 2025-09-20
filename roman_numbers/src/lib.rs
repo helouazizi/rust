@@ -57,13 +57,11 @@ impl From<u32> for RomanNumber {
         ];
 
         for &(num, digits) in mapping {
-            println!("{num}");
             while value >= num {
-                println!(" {} {:?}",value , digits);
-                 println!("{num}");
                 res.extend_from_slice(digits);
                 value -= num;
             }
+            println!(" {} {:?}",num , res);
         }
 
         RomanNumber(res)
