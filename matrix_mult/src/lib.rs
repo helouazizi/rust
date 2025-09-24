@@ -1,14 +1,16 @@
-pub fn add(left: u64, right: u64) -> u64 {
-    left + right
+impl Matrix<T> {
+	pub fn number_of_cols(&self) -> usize {
+	}
+
+	pub fn number_of_rows(&self) -> usize {
+	}
+
+	pub fn row(&self, n: usize) -> Vec<T> {
+	}
+
+	pub fn col(&self, n: usize) -> Vec<T> {
+	}
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
+impl Mul for Matrix<T> {
 }
