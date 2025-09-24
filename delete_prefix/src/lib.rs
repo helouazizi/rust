@@ -1,2 +1,4 @@
-pub fn delete_prefix(prefix: &str, s: &str) -> Option<&str> {
+pub fn delete_prefix(prefix: &'static str, s: &'static str) -> Option<&'static str> {
+    s.strip_prefix(prefix)
+
 }
