@@ -1,11 +1,7 @@
 use lifetimes::*;
 
 fn main() {
-	let person = Person::new("Leo");
+	fffget person = Person::new("Leo");
 
 	println!("Person = {:?}", person);
 }
-
-
-
-
