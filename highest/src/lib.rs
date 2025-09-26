@@ -1,14 +1,16 @@
-pub fn add(left: u64, right: u64) -> u64 {
-    left + right
+#[derive(Debug)]
+pub struct Numbers<'a> {
+    numbers: &'a [u32],
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+impl Numbers {
+    pub fn new(numbers: &[u32]) -> Self {}
 
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
+    pub fn list(&self) -> &[u32] {}
+
+    pub fn latest(&self) -> Option<u32> {}
+
+    pub fn highest(&self) -> Option<u32> {}
+
+    pub fn highest_three(&self) -> Vec<u32> {}
 }
