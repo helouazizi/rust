@@ -22,7 +22,7 @@ impl<'a> Numbers<'a> {
 
     pub fn highest_three(&self) -> Vec<u32> {
         let mut nums: Vec<u32> = self.numbers.to_vec();
-        nums.sort_unstable_by(|a, b| b.cmp(a)); // Sort descending
+        nums.sort(); 
         nums.into_iter().take(3).collect()
     }
 }
