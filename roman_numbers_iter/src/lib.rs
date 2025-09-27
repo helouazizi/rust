@@ -1,4 +1,3 @@
-```
 use crate::RomanDigit::*;
 
 #[derive(Copy, Clone, Debug, PartialEq, Eq)]
@@ -116,4 +115,3 @@ pub fn decipher(roman: &RomanNumber) -> u32 {
 
     total
 }
-```
