@@ -44,7 +44,7 @@ mod tests {
         ];
 
         for (i, value) in aux.enumerate() {
-            assert_eq!(value, sequence[i]);
+            assert_eq!(value.v, sequence[i]);
         }
     }
 
